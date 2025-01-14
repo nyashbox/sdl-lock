@@ -15,7 +15,6 @@ set(SDL_LOCK_SRCS
     auth/auth.c
 
     gfx/sdl3/window.c
-    gfx/sdl3/image.c
     gfx/sdl3/init.c
 )
 

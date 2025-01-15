@@ -25,6 +25,8 @@ static const char HELP_MSG[] =
     "Usage: sdl-lock [OPTION...]\n\n"
     "Options:\n"
     "\t-L, --log-level LEVEL Logging level (default: warn)\n"
+    "                        Available levels are: \n"
+    "                             debug, info, warn, error, fatal\n"
     "\n"
     "\t-h, --help    Display this help message and exit.\n"
     "\t-v, --version Display version and exit.\n";

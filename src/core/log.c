@@ -28,6 +28,27 @@ sdlk_logger_level_t sdlk_logger_get_level(sdlk_logger_t *logger) {
   return logger->level;
 }
 
+sdlk_logger_level_t sdlk_logger_level_from_str(const char *level,
+                                               sdlk_status_t *res) {
+  // status should be "success" by default
+  *res = SDLK_STATUS_SUCCESS;
+
+  if (!strcmp(level, "debug"))
+    return LOG_DEBUG;
+  else if (!strcmp(level, "info"))
+    return LOG_INFO;
+  else if (!strcmp(level, "warn"))
+    return LOG_WARN;
+  else if (!strcmp(level, "error"))
+    return LOG_ERROR;
+  else if (!strcmp(level, "fatal"))
+    return LOG_FATAL;
+
+  // set error status code
+  *res = SDLK_STATUS_ERROR;
+  return LOG_WARN;
+}
+
 void sdlk_logger_set_level(sdlk_logger_t *logger, sdlk_logger_level_t level) {
   logger->level = level;
 }

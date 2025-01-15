@@ -96,6 +96,15 @@ void sdlk_logger_set_level(sdlk_logger_t *logger, sdlk_logger_level_t level);
 //! @return Current logging level
 sdlk_logger_level_t sdlk_logger_get_level(sdlk_logger_t *logger);
 
+//! @brief Get logging level from string
+//!
+//! @param level logging level string
+//! @param res result (returned status code)
+//!
+//! @return Logging level
+sdlk_logger_level_t sdlk_logger_level_from_str(const char *level,
+                                               sdlk_status_t *res);
+
 //! @defgroup LogMacros Logger macros
 //! @brief Collection of macros for simple logging
 //!

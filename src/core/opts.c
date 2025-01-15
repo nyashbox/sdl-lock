@@ -48,8 +48,10 @@ void sdlk_opts_parse(sdlk_config_t *conf, int argc, char **argv) {
 
       sdlk_logger_level_t lvl = sdlk_logger_level_from_str(level, &res);
       if (res != SDLK_STATUS_SUCCESS) {
-        SDLK_LOGGER_FATAL("(Core/Opts) Failed to parse logger level: %s\n",
-                          level);
+        SDLK_LOGGER_FATAL(
+            "(Core/Opts) Invalid logger level: %s\n\n"
+            "Available levels are: debug, info, warn, error, fatal\n",
+            level);
 
         exit(EXIT_FAILURE);
       }

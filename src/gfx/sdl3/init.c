@@ -20,7 +20,6 @@ typedef struct sdlk_gfx_t {
 sdlk_status_t sdlk_gfx_init(sdlk_gfx_t **gfx) {
   SDLK_LOGGER_DEBUG("(Graphics/SDL3) Performing graphics initialization...\n");
 
-  sdlk_window_t *window = (*gfx)->window;
   sdlk_gfx_t *graphics;
   sdlk_status_t res;
 

@@ -42,6 +42,7 @@ sdlk_status_t sdlk_window_create(sdlk_window_t **window, const char *title,
           | SDL_WINDOW_KEYBOARD_GRABBED // grab keyboard input
           | SDL_WINDOW_INPUT_FOCUS      // make window focused
           | SDL_WINDOW_MOUSE_FOCUS      // make window mouse focus
+          | SDL_WINDOW_HIDDEN           // window should be hidden by default
           | SDL_WINDOW_MOUSE_CAPTURE    // capture mouse
   );
   if (!win->sdl_window) {

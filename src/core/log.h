@@ -105,6 +105,13 @@ sdlk_logger_level_t sdlk_logger_get_level(sdlk_logger_t *logger);
 sdlk_logger_level_t sdlk_logger_level_from_str(const char *level,
                                                sdlk_status_t *res);
 
+//! @brief Gracefully close logger
+//!
+//! @param logger logger object (pointer)
+//!
+//! @return Nothing
+void sdlk_logger_free(sdlk_logger_t *logger);
+
 //! @defgroup LogMacros Logger macros
 //! @brief Collection of macros for simple logging
 //!

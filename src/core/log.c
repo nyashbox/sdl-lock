@@ -109,6 +109,10 @@ sdlk_status_t sdlk_logger_close_file_sinks(sdlk_logger_t *logger) {
   return SDLK_STATUS_SUCCESS;
 }
 
+void sdlk_logger_free(sdlk_logger_t *logger) {
+  sdlk_logger_close_file_sinks(logger);
+}
+
 static int _sdlk_logger_insert_sink(sdlk_logger_t *logger, FILE *sink) {
   int index = logger->sinks_count;
 

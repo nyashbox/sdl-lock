@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
   sdlk_opts_parse(&SDLK_DEFAULT_CONFIG, argc, argv);
 
   // close all opened log files
-  sdlk_logger_close_file_sinks(&SDLK_DEFAULT_LOGGER);
+  sdlk_logger_free(&SDLK_DEFAULT_LOGGER);
 
   return EXIT_SUCCESS;
 }

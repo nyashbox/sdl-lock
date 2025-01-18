@@ -43,6 +43,11 @@ sdlk_status_t sdlk_window_show(sdlk_window_t *window);
 sdlk_status_t sdlk_window_hide(sdlk_window_t *window);
 
 //! @brief set background image of a window
+//!
+//! @param window window (pointer)
+//! @param path image path
+//!
+//! @return Status code
 sdlk_status_t sdlk_window_set_background(sdlk_window_t *window,
                                          const char *path);
 

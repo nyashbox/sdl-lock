@@ -5,6 +5,7 @@
 #include <malloc.h>
 
 #include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 
 #include "gfx/window.h"
 
@@ -14,6 +15,7 @@
 typedef struct sdlk_window_t {
   SDL_Window *sdl_window;   //!< SDL Window
   SDL_Renderer *sdl_render; //!< SDL Renderer
+  SDL_Texture *background;  //!< Locker background
   int width;                //!< Screen width
   int height;               //!< Screen heigh
 } sdlk_window_t;
@@ -64,6 +66,9 @@ sdlk_status_t sdlk_window_create(sdlk_window_t **window, const char *title,
     return SDLK_STATUS_ERROR;
   }
 
+  // no background by default
+  win->background = NULL;
+
   // fill background with black color
   SDL_SetRenderDrawColor(win->sdl_render, 0x00, 0x00, 0x00, 0xFF);
   SDL_RenderClear(win->sdl_render);
@@ -74,6 +79,15 @@ sdlk_status_t sdlk_window_create(sdlk_window_t **window, const char *title,
 }
 
 sdlk_status_t sdlk_window_update(sdlk_window_t *window) {
+  SDL_Renderer *render = window->sdl_render;
+  SDL_Texture *background = window->background;
+
+  SDL_RenderClear(render);
+
+  // render background only if present
+  if (background)
+    SDL_RenderTexture(render, background, NULL, NULL);
+
   SDL_RenderPresent(window->sdl_render);
 
   return SDLK_STATUS_SUCCESS;
@@ -95,14 +109,35 @@ sdlk_status_t sdlk_window_hide(sdlk_window_t *window) {
     return SDLK_STATUS_FAILURE;
 }
 
+sdlk_status_t sdlk_window_set_background(sdlk_window_t *window,
+                                         const char *path) {
+  // free previous image (if was loaded)
+  if (window->background)
+    SDL_DestroyTexture(window->background);
+
+  window->background = IMG_LoadTexture(window->sdl_render, path);
+  if (!window->background) {
+    SDLK_LOGGER_FATAL("(Graphics/SDL3) Failed to load background image: %s\n",
+                      SDL_GetError());
+
+    return SDLK_STATUS_ERROR;
+  }
+
+  return SDLK_STATUS_SUCCESS;
+}
+
 void sdlk_window_free(sdlk_window_t *window) {
   SDLK_LOGGER_DEBUG("(Graphics/SDL3) Cleaning up window...\n");
 
   SDL_Window *win = window->sdl_window;
   SDL_Renderer *render = window->sdl_render;
+  SDL_Texture *background = window->background;
 
   if (win)
     SDL_DestroyWindow(win);
+
+  if (background)
+    SDL_DestroyTexture(background);
 
   if (render)
     SDL_DestroyRenderer(render);

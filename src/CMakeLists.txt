@@ -3,6 +3,7 @@
 # Copyright (c) 2025 nyashbox and Contributors
 
 find_package(SDL3 REQUIRED)
+find_package(SDL3_image REQUIRED)
 find_package(PAM REQUIRED)
 
 set(SDL_LOCK_SRCS
@@ -31,6 +32,7 @@ target_include_directories(sdl_lock_obj
 target_link_libraries(sdl_lock_obj
     PUBLIC 
         SDL3::SDL3
+        SDL3_image::SDL3_image
         PAM::PAM
 )
 

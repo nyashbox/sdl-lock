@@ -18,12 +18,11 @@ static sdlk_status_t sdlk_signal_init();
 
 int main(int argc, char **argv) {
   // initializations
+  sdlk_logger_init(&SDLK_DEFAULT_LOGGER);
   sdlk_signal_init();
   sdlk_gfx_init(NULL);
 
-  // add default stderr file sink for logging
-  sdlk_logger_add_stderr_sink(&SDLK_DEFAULT_LOGGER);
-
+  // parse command line options
   sdlk_opts_parse(&SDLK_DEFAULT_CONFIG, argc, argv);
 
   raise(SIGQUIT);

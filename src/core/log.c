@@ -19,10 +19,17 @@ struct sdlk_logger_t {
   size_t sinks_count;
 };
 
-struct sdlk_logger_t SDLK_DEFAULT_LOGGER = {
-    .level = LOG_WARN, // log warning messages
-    .sinks = {NULL},   // no sinks by default
-    .sinks_count = 0};
+struct sdlk_logger_t SDLK_DEFAULT_LOGGER;
+
+sdlk_status_t sdlk_logger_init(sdlk_logger_t *logger) {
+  logger->level = LOG_WARN;
+  logger->sinks_count = 0;
+
+  // add stderr sink
+  sdlk_logger_add_stderr_sink(logger);
+
+  return SDLK_STATUS_SUCCESS;
+}
 
 sdlk_logger_level_t sdlk_logger_get_level(sdlk_logger_t *logger) {
   return logger->level;

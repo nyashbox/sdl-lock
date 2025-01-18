@@ -23,6 +23,13 @@ typedef enum {
   LOG_FATAL  //!< 'fatal' level
 } sdlk_logger_level_t;
 
+//! @brief Initialize logger object
+//!
+//! @param logger logger object (pointer)
+//!
+//! @return Status Code
+sdlk_status_t sdlk_logger_init(sdlk_logger_t *logger);
+
 //! @brief log message
 //!
 //! This function will write log message to the sinks specified

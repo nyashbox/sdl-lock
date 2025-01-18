@@ -12,6 +12,7 @@
 
 //! @brief config structure
 typedef struct {
+  char *background_img; //!< locker background image
 } sdlk_config_t;
 
 extern sdlk_config_t SDLK_DEFAULT_CONFIG;

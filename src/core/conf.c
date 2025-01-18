@@ -11,4 +11,6 @@
 
 #include <config.h>
 
-sdlk_config_t SDLK_DEFAULT_CONFIG = {};
+sdlk_config_t SDLK_DEFAULT_CONFIG = {
+    .background_img = NULL //!< no image is loaded by default
+};

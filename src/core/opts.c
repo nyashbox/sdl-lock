@@ -18,12 +18,15 @@
 static struct option LONGOPTS[] = {{"version", no_argument, NULL, 'v'},
                                    {"help", no_argument, NULL, 'h'},
                                    {"log-level", required_argument, NULL, 'L'},
+                                   {"background", required_argument, NULL, 'b'},
                                    {NULL, no_argument, NULL, 0}};
 
 // help message
 static const char HELP_MSG[] =
     "Usage: sdl-lock [OPTION...]\n\n"
     "Options:\n"
+    "\t-b, --background IMAGE Set background image.\n"
+    "\n"
     "\t-L, --log-level LEVEL Logging level (default: warn)\n"
     "                        Available levels are: \n"
     "                             debug, info, warn, error, fatal\n"
@@ -32,7 +35,7 @@ static const char HELP_MSG[] =
     "\t-v, --version Display version and exit.\n";
 
 void sdlk_opts_parse(sdlk_config_t *conf, int argc, char **argv) {
-  const char *shortopts = "vhL:";
+  const char *shortopts = "vhb:L:";
 
   int o;
   int longindex = 0;
@@ -42,6 +45,11 @@ void sdlk_opts_parse(sdlk_config_t *conf, int argc, char **argv) {
       printf("sdl-lock version %s\n", SDL_LOCK_VERSION);
 
       exit(EXIT_SUCCESS);
+    }
+    case 'b': {
+      conf->background_img = optarg;
+
+      break;
     }
     case 'L': {
       const char *level = optarg;

@@ -5,32 +5,20 @@
 #ifndef _SDL_LOCK_GFX_INIT_H_
 #define _SDL_LOCK_GFX_INIT_H_
 
-#include "gfx/window.h"
-
 #include "core/status.h"
-
-//! @brief graphics structure
-typedef struct sdlk_gfx_t sdlk_gfx_t;
 
 //! @brief initialize graphics subsystem
 //!
-//! @param gfx graphics object
+//! @param ctx backend-specific context
 //!
 //! @return Status Code
-sdlk_status_t sdlk_gfx_init(sdlk_gfx_t **gfx);
-
-//! @brief get window object
-//!
-//! @param gfx graphics object
-//!
-//! @return window object (pointer)
-sdlk_window_t *sdlk_gfx_get_window(sdlk_gfx_t *gfx);
+sdlk_status_t sdlk_gfx_init(void *ctx);
 
 //! @brief terminate graphics subsystem
 //!
-//! @param gfx graphics object
+//! @param ctx backend-specific context
 //!
 //! @return Nothing
-void sdlk_gfx_free(sdlk_gfx_t *gfx);
+void sdlk_gfx_free(void *ctx);
 
 #endif // _SDL_LOCK_GFX_INIT_H_

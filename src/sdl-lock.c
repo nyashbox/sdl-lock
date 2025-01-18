@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "gfx/init.h"
 
@@ -24,6 +25,9 @@ int main(int argc, char **argv) {
 
   // parse command line options
   sdlk_opts_parse(&SDLK_DEFAULT_CONFIG, argc, argv);
+
+  SDLK_LOGGER_DEBUG("(Core) sdl-lock daemon is running with PID '%d'.\n",
+                    getpid());
 
   raise(SIGQUIT);
 }

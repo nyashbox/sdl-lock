@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "gfx/init.h"
+
 #include "core/log.h"
 #include "core/opts.h"
 
@@ -15,8 +17,9 @@ static void sdlk_signal_handle_quit(int sig);
 static sdlk_status_t sdlk_signal_init();
 
 int main(int argc, char **argv) {
-  // initialize signal handling
+  // initializations
   sdlk_signal_init();
+  sdlk_gfx_init(NULL);
 
   // add default stderr file sink for logging
   sdlk_logger_add_stderr_sink(&SDLK_DEFAULT_LOGGER);
@@ -31,6 +34,7 @@ static void sdlk_signal_handle_quit(int sig) {
 
   // resources clean up
   sdlk_logger_free(&SDLK_DEFAULT_LOGGER);
+  sdlk_gfx_free(NULL);
 
   exit(EXIT_SUCCESS);
 }
